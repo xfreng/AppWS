@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            storeFile file('D:/installed/Android/keys/android.key.jks')
+        }
+    }
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.app.jcoffee"
+        minSdkVersion 14
+        targetSdkVersion 26
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.config
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation files('libs/apiEngine v1.1.0.jar')
+    implementation files('libs/glide-3.7.0.jar')
+    implementation files('libs/photoimageview.jar')
+    implementation files('libs/UIMediaScanner.jar')
+    implementation files('libs/uzMam.jar')
+    implementation files('libs/uzMcm.jar')
+    implementation 'com.zhy:autolayout:1.4.5'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+}

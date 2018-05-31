@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../mui/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/app.css">
+    <style>
+		html,body {
+			background-color: #efeff4 !important;
+			width:100%;
+		}
+        .empty{ text-align: center; padding: 120px 0; }
+    </style>
+</head>
+<body>
+	<div style="height: 0px;">
+		<span class="notice"><img src="../../image/notice.png"></span>
+	</div>
+	<div id="slider" class="mui-slider" >
+		<div class="mui-slider-group mui-slider-loop">
+			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+				<a href="#">
+					<img src="../../image/banner/yuantiao.jpg">
+				</a>
+			</div>
+			<!-- 第一张 -->
+			<div class="mui-slider-item">
+				<a href="#">
+					<img src="../../image/banner/shuijiao.jpg">
+				</a>
+			</div>
+			<!-- 第二张 -->
+			<div class="mui-slider-item">
+				<a href="#">
+					<img src="../../image/banner/muwu.jpg">
+				</a>
+			</div>
+			<!-- 第三张 -->
+			<div class="mui-slider-item">
+				<a href="#">
+					<img src="../../image/banner/cbd.jpg">
+				</a>
+			</div>
+			<!-- 第四张 -->
+			<div class="mui-slider-item">
+				<a href="#">
+					<img src="../../image/banner/yuantiao.jpg">
+				</a>
+			</div>
+			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+				<a href="#">
+					<img src="../../image/banner/shuijiao.jpg">
+				</a>
+			</div>
+		</div>
+		<div class="mui-slider-indicator">
+			<div class="mui-indicator mui-active"></div>
+			<div class="mui-indicator"></div>
+			<div class="mui-indicator"></div>
+			<div class="mui-indicator"></div>
+		</div>
+	</div>
+    <div><button class="mui-btn mui-btn-primary" onclick="postInfo()">测试发送报文</button></div>
+    <div>
+    	<li class="mui-list-item">
+	        <div class="mui-list-item-inner">
+	            <div class="mui-list-item-label">
+	           		 头像
+	            </div>
+	            <div class="mui-list-item-input" style="margin:15px;" onclick="showAction();">
+	                <img id="avatar" name="avatar" src="../../image/profile_default.png" width="100px;">
+	            </div>
+	        </div>
+		</li>
+	</div>
+    <div id="vue">
+        <input v-model="message" style="width:100%;">
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/core-min.js"></script>
+<script type="text/javascript" src="../../script/md5.js"></script>
+<script type="text/javascript" src="../../script/tripledes.js"></script>
+<script type="text/javascript" src="../../script/mode-ecb.js"></script>
+<script type="text/javascript" src="../../script/fui.js"></script>
+<script type="text/javascript" src="../../mui/js/mui.min.js"></script>
+<script type="text/javascript">
+	var keyLength = $api.getStorage('keyLength');
+	var secretKey = $api.getStorage('secretKey');
+	var serviceUrl = $api.getStorage('serviceUrl');
+	var fileUploadServiceUrl = $api.getStorage('fileUploadServiceUrl');
+	var machineCode = $api.getStorage('machineCode');
+	var device = $api.getStorage('device');
+	function postInfo(){
+		var transCode = "1001";
+		var data = {
+            "header":{"transcode":transCode},
+            "body":{
+                "device":device,
+                "appKey":transCode,
+                "machineCode":machineCode,
+                "uid":"9",
+                "token":"jBm5Ev9g",
+                "userName": "苏先生",
+                "card": "450521199808084949",
+                "income": "100",
+                "userEmail": "123456@qq.com",
+                "area": "湖南省,长沙市",
+                "contact": "18977999999",
+                "relation": "2",
+                "userMarriage": "2",
+                "userChsi": "2"
+            }
+        };
+        var md5key = encryptByMd5(JSON.stringify(data)+transCode).toUpperCase();
+		api.ajax({
+		    url: serviceUrl,
+		    method: 'post',
+		    data: {
+		        values: {
+		            "data":md5key+encryptByDES(JSON.stringify(data),secretKey)
+		        }
+		    },
+			dataType: "json"
+		}, function(ret, err) {
+		    if (ret) {
+        		var dataJsonEncrypt = ret.data.substring(keyLength);
+        		var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
+		        api.alert({ msg: decryptData });
+		    } else {
+		    	var dataJsonEncrypt = err.data.substring(keyLength);
+		    	var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
+		        api.alert({ msg: decryptData });
+		    }
+		});
+	}
+
+    function showAction(){
+    	api.actionSheet({
+	        title: '上传头像',
+	        cancelTitle: '取消',
+	        buttons: ['拍照','从手机相册选择']
+	    }, function(ret, err) {
+	        if (ret) {
+	            getPicture(ret.buttonIndex);
+	        }
+	    });
+    }
+
+	function getPicture(sourceType) {
+	    if(sourceType==1){ // 拍照
+	        //获取一张图片
+	        api.getPicture({
+	            sourceType: 'camera',
+	            encodingType: 'png',
+	            mediaValue: 'pic',
+	            allowEdit: false,
+	            quality: 90,
+	            saveToPhotoAlbum: true
+	        }, function(ret, err) {
+	            // 获取拍照数据并处理
+	            if (ret) {
+	                var imgSrc = ret.data;
+	                if (imgSrc != "") {
+	                	uploadFile(imgSrc);
+	                    var ele=$api.dom('#avatar');
+	                    $api.attr(ele,'src',imgSrc);
+	                }
+	            }
+	        });
+	    } else if(sourceType==2){ // 从相机中选择
+	        //UIMediaScanner 是一个多媒体扫描器，可扫描系统的图片、视频等多媒体资源
+	        var obj = api.require('UIMediaScanner');
+	        obj.open({
+	            //返回的资源种类,picture（图片）,video（视频）,all（图片和视频）
+	            type: 'picture',
+	            //（可选项）图片显示的列数，须大于1
+	            column: 4,
+	            max: 1,
+	            //（可选项）图片排序方式,asc（旧->新）,desc（新->旧）
+	            sort: {
+	                key: 'time',
+	                order: 'desc'
+	            },
+	            //（可选项）模块各部分的文字内容
+	            texts: {
+	                stateText: '已选择*项',
+	                cancelText: '取消',
+	                finishText: '完成'
+	            },
+	            styles: {
+	                bg: '#fff',
+	                mark: {
+	                    icon: '',
+	                    position: 'bottom_right',
+	                    size: 20
+	                },
+	                nav: {
+	                    bg: '#eee',
+	                    stateColor: '#000',
+	                    stateSize: 18,
+	                    cancleBg: 'rgba(0,0,0,0)',
+	                    cancelColor: '#000',
+	                    cancelSize: 18,
+	                    finishBg: 'rgba(0,0,0,0)',
+	                    finishColor: '#000',
+	                    finishSize: 18
+	                }
+	            }
+	        }, function(ret) {
+	            // 获取图片数据并处理
+	            if (ret) {
+	                if (getJsonObjLength(ret.list) != 0) {
+	                	uploadFile(ret.list[0].path);
+	                    var ele=$api.dom('#avatar');
+	                    $api.attr(ele,'src',ret.list[0].path);
+	                }
+	            }
+	        });
+	    }
+	}
+
+	function getJsonObjLength(jsonObj) {
+        var length = 0;
+        for (var item in jsonObj) {
+            length++;
+        }
+        return length;
+    }
+
+	function uploadFile(filePath){
+		var transCode = "8083";
+		var data = {};
+		data.transcode = transCode;
+		api.ajax({
+			timeout : 100,
+		    url: fileUploadServiceUrl,
+		    method: 'post',
+		    data: {
+		    	values:data,
+		        files:{"file": filePath}
+		    },
+			dataType: "json"
+		}, function(ret, err) {
+		    if (ret) {
+        		var dataJsonEncrypt = ret.data.substring(keyLength);
+        		var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
+		        api.alert({ msg: decryptData });
+		    } else {
+		    	var dataJsonEncrypt = err.data.substring(keyLength);
+		    	var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
+		        api.alert({ msg: decryptData });
+		    }
+		});
+	}
+
+    apiready = function () {
+        new Vue({
+          el: '#vue',
+          data: {
+            'message': 'Hello Vue.js!  machineCode:' + machineCode
+          }
+        })
+	}
+	
+	//mui
+	mui.init({
+		swipeBack:true //启用右滑关闭功能
+	});
+	var slider = mui("#slider");
+	slider.slider({
+		interval: 5000 //每隔5秒调用一次
+	});
+</script>
+</html>

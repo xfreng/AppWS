@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>APPWS</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <style>
+        #footer{  background-color: #f2f2f2; }
+        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #footer ul li.active{ color: #d81e06; }
+        #footer ul li:nth-child(1){ background-image: url(./image/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/bottombtn0301.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/bottombtn0202.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/bottombtn0302.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/bottombtn0402.png); }
+        .flex-con{
+        	overflow: auto
+        }
+    </style>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <div id="main" class="flex-con">
+        
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'home_frame' );" class="flex-con active" >首页</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'choice_frame' );" class="flex-con" >精选</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'discover_frame' );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'my_frame' );" class="flex-con" >我的</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript">
+   	var main = $api.byId('main');
+   	var mainPos = $api.offset(main);
+
+   	var footer = $api.byId('footer');
+   	var footerPos = $api.offset(footer);
+   	
+   	var gFrameIndex;
+   	
+   	function initParams(){
+	   	var keyLength = 32;
+		var secretKey = "A1B2C3D4E5F6G7H8I9J0K1L2";
+		var serviceUrl = "http://192.168.52.106:8034/interface/app/service";
+		var fileUploadServiceUrl = "http://192.168.52.106:8034/interface/app/upload";
+		var device = api.systemType;
+		var machineCode = api.deviceId;
+   		$api.setStorage('keyLength',keyLength);
+   		$api.setStorage('secretKey',secretKey);
+   		$api.setStorage('serviceUrl',serviceUrl);
+   		$api.setStorage('fileUploadServiceUrl',fileUploadServiceUrl);
+   		$api.setStorage('device',device);
+   		$api.setStorage('machineCode',machineCode);
+   	}
+   	
+    apiready = function () {
+        $api.fixStatusBar( $api.dom('header') );
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: '#6ab494'
+        });
+
+        var main = $api.byId('main');
+        var mainPos = $api.offset(main);
+
+        var footer = $api.byId('footer');
+        var footerPos = $api.offset(footer);        
+        gFrameIndex = 0;
+        
+        funIniGroup();
+        initParams();
+        exitApp();
+    }
+
+    function funIniGroup(){
+        // 第一次进入打开 首页
+        api.openFrame ({
+            name: 'home_frame',
+            url: './html/home_frame/home_frame_body.html',
+            rect:{
+            x:0,
+            w:'auto',
+            h:api.frameHeight-footerPos.h
+            },
+            bounces: false,
+            opaque: false
+        });
+    }
+
+    // 随意切换按钮
+    function randomSwitchBtn( tag, type ) {
+        if( tag == $api.dom('#footer li.active') ) return;
+        var eFootLis = $api.domAll('#footer li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+            if( tag == eFootLis[i] ){
+                index = i;
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+            }
+        }
+      	$api.addCls( eFootLis[index], 'active');
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+        if ( index === gFrameIndex ) {
+      		return 0;
+        } else {
+      		gFrameIndex = index;
+        }
+       	
+     	hideAllFrame();
+     	
+        switch(type) {
+            case 'home_frame':
+                openFrameInstance('home_frame', 0);
+            	break;
+            case 'choice_frame':
+                openFrameInstance('choice_frame', 0);
+            	break;
+            case 'discover_frame':
+                openFrameInstance('discover_frame', 0);
+            	break;
+            case 'my_frame':
+                openFrameInstance('my_frame', 0);
+            	break;
+            default:
+            	break;
+        }
+    }
+    
+    function openFrameInstance( frame, marginTop ) {
+        api.openFrame ({
+            name: frame,
+            url: './html/' + frame +'/' + frame + '_body.html',
+            rect:{
+                x:0,
+                y:marginTop,
+                w:'auto',
+                h:api.frameHeight - marginTop - footerPos.h
+            },
+            pageParam: {name: 'test'},
+            bounces: false,
+            vScrollBarEnabled:false,
+            hScrollBarEnabled:false,
+            delay:200
+        });
+    }
+    
+    // 隐藏所有的一级frame
+    function hideAllFrame() {
+        api.setFrameAttr({
+            name: 'home_frame',
+            hidden:true
+        });
+        api.setFrameAttr({
+            name: 'choice_frame',
+            hidden:true
+        });
+        api.setFrameAttr({
+            name: 'discover_frame',
+            hidden:true
+        });
+        api.setFrameAttr({
+            name: 'my_frame',
+            hidden:true
+        });
+    }
+    
+    function exitApp(){
+    	api.addEventListener({
+    		name: 'keyback'
+    	}, function(ret, err){
+    		api.toast({
+    			msg: '再按一次返回键退出' + api.appName,
+    			duration: 2000,
+    			location: 'bottom'
+    		});
+    		
+    		api.addEventListener({
+    			name: 'keyback'
+    		}, function(ret, err){
+    			api.closeWidget({
+   					id: api.appId,
+   					retData: {name:'closeWidget'},
+   					silent:true
+   				});
+    		});
+    		setTimeout(function(){
+   				exitApp();
+    		},3000)
+    	});
+    }
+</script>
