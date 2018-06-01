@@ -126,7 +126,7 @@
 		    method: 'post',
 		    data: {
 		        values: {
-		            "data":md5key+encryptByDES(JSON.stringify(data),secretKey)
+		            "data": md5key+encryptByDES(JSON.stringify(data),secretKey)
 		        }
 		    },
 			dataType: "json"
@@ -156,7 +156,7 @@
     }
 
 	function getPicture(sourceType) {
-	    if(sourceType==1){ // 拍照
+	    if(sourceType == 1){ // 拍照
 	        //获取一张图片
 	        api.getPicture({
 	            sourceType: 'camera',
@@ -220,8 +220,6 @@
 	            if (ret) {
 	                if (getJsonObjLength(ret.list) != 0) {
 	                	uploadFile(ret.list[0].path);
-	                    var ele=$api.dom('#avatar');
-	                    $api.attr(ele,'src',ret.list[0].path);
 	                }
 	            }
 	        });
@@ -238,8 +236,7 @@
 
 	function uploadFile(filePath){
 		var transCode = "8083";
-		var data = {};
-		data.transcode = transCode;
+		var data = {transCode: "8083"};
 		api.ajax({
 			timeout : 100,
 		    url: fileUploadServiceUrl,
@@ -253,6 +250,8 @@
 		    if (ret) {
         		var dataJsonEncrypt = ret.data.substring(keyLength);
         		var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
+				var ele = $api.dom('#avatar');
+	            $api.attr(ele,'src', decryptData.body.imageURL);
 		        api.alert({ msg: decryptData });
 		    } else {
 		    	var dataJsonEncrypt = err.data.substring(keyLength);

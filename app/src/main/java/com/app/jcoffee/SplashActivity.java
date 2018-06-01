@@ -1,8 +1,12 @@
 package com.app.jcoffee;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.zhy.http.okhttp.OkHttpUtils;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -23,5 +27,19 @@ public class SplashActivity extends AppCompatActivity {
 
         }, SPLASH_DISPLAY_LENGTH);
 
+    }
+
+    @Override
+    public Resources getResources() {
+        Resources localResources = super.getResources();
+        Configuration localConfiguration = new Configuration();
+        localConfiguration.setToDefaults();
+        localResources.updateConfiguration(localConfiguration, localResources.getDisplayMetrics());
+        return localResources;
+    }
+
+    protected void onDestroy() {
+        OkHttpUtils.getInstance().cancelTag(this);
+        super.onDestroy();
     }
 }
