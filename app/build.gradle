@@ -27,12 +27,7 @@ android {
 }
 
 dependencies {
-    implementation files('libs/apiEngine v1.1.0.jar')
-    implementation files('libs/glide-3.7.0.jar')
-    implementation files('libs/photoimageview.jar')
-    implementation files('libs/UIMediaScanner.jar')
-    implementation files('libs/uzMam.jar')
-    implementation files('libs/uzMcm.jar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.zhy:autolayout:1.4.5'
     implementation 'com.zhy:okhttputils:2.6.2'
     implementation 'com.android.support:appcompat-v7:26.1.0'
