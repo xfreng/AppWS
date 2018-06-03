@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>APPWS</title>
+    <title>AppWS</title>
     <link rel="stylesheet" type="text/css" href="./css/api.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <style>
+        /* 头部样式 */
+        #homeHeader {background-color:  #D43C33;}
+        #choiceHeader {background-color:  #D43C33;}
+        #discoverHeader {background-color:  #D43C33;}
+        #myHeader {background-color:  #D43C33;}
+        /* 头部切换样式 */
+        .fr{float: right;}
+        .pa {position: absolute;}
+        .titlebar {display: none;}
+        .activebar {display: block;}
+        .egret-header-box {height: 50px;}
+        .topbar {background: #D43C33; height:50px; border-bottom: 1px solid #DDDFE3;position: relative;}
+        .egret-header-title {position: absolute;width: 100%;text-align: center;line-height: 50px;color: #fff;font-size: 20px;}
+        .egret-header-text {line-height: 50px;color: #fff;font-size: 16px;padding: 0 10px;}
+        .egret-img img {height: 30px;padding: 10px;}
+        img {vertical-align: top;}
         #footer{  background-color: #f2f2f2; }
         #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
         #footer ul li.active{ color: #d81e06; }
@@ -19,22 +35,49 @@
         #footer ul li:nth-child(2).active{ background-image: url(./image/bottombtn0202.png); }
         #footer ul li:nth-child(3).active{ background-image: url(./image/bottombtn0302.png); }
         #footer ul li:nth-child(4).active{ background-image: url(./image/bottombtn0402.png); }
-        .flex-con{
-        	overflow: auto
-        }
     </style>
 </head>
 <body>
-<div id="wrap" class="flex-wrap flex-vertical">
-    <div id="main" class="flex-con">
+<div id="wrap">
+    <!-- 第一头部 -->
+    <div id="homeHeader" class="titlebar activebar">
+        <div class="egret-header topbar normalHeader">
+            <div class="egret-header-box egret-img fr" onclick="openNotice()"><img src="./image/notice.png" alt=""></div>
+            <div class="egret-header-box">
+                <div id="homeHeaderText" class="egret-header-title"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 第二头部 -->
+    <div id="choiceHeader" class="titlebar">
+        <div class="egret-header topbar">
+            <div class="egret-header-title">精选</div>
+        </div>
+    </div>
+    
+    <!-- 第三头部 -->
+    <div id="discoverHeader" class="titlebar">
+        <div class="egret-header topbar">
+            <div class="egret-header-title">发现</div>
+        </div>
+    </div>
+    
+    <!-- 第四头部 -->
+    <div id="myHeader" class="titlebar">
+        <div class="egret-header topbar">
+            <div class="egret-header-title">我的</div>
+        </div>
+    </div>
+    <div id="main">
         
     </div>
     <div id="footer" class="border-t">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'home_frame' );" class="flex-con active" >首页</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'choice_frame' );" class="flex-con" >精选</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'discover_frame' );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'my_frame' );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="switchFrame(this, 'home_frame');" class="flex-con active" >首页</li>
+            <li tapmode="hover" onclick="switchFrame(this, 'choice_frame');" class="flex-con" >精选</li>
+            <li tapmode="hover" onclick="switchFrame(this, 'discover_frame');" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="switchFrame(this, 'my_frame');" class="flex-con" >我的</li>
         </ul>
     </div>
 </div>
@@ -42,13 +85,22 @@
 </html>
 <script type="text/javascript" src="./script/api.js"></script>
 <script type="text/javascript">
+    var homeHeader = $api.byId('homeHeader');
+    var choiceHeader = $api.byId('choiceHeader');
+    var discoverHeader = $api.byId('discoverHeader');
+    var myHeader = $api.byId('myHeader');
+    var firstHeaderOffset;
+
    	var main = $api.byId('main');
    	var mainPos = $api.offset(main);
 
    	var footer = $api.byId('footer');
    	var footerPos = $api.offset(footer);
    	
-   	var gFrameIndex;
+    var isFirstOpen = false;
+    var isSecondOpen = false;
+    var isThirdOpen = false;
+    var isForthOpen = false;
    	
    	function initParams(){
 	   	var keyLength = 32;
@@ -66,33 +118,104 @@
    	}
    	
     apiready = function () {
-        $api.fixStatusBar( $api.dom('header') );
+        // 设置ios7的标题栏字体变亮，全局用一个就行了
         api.setStatusBarStyle({
-            style: 'dark',
-            color: '#6ab494'
-        });
+            style: 'dark'
+        }); 
+
+        homeHeader = $api.byId('homeHeader');
+        choiceHeader = $api.byId('choiceHeader');
+        discoverHeader = $api.byId('discoverHeader');
+        myHeader = $api.byId('myHeader');
+
+        $api.fixStatusBar( $api.dom( '.titlebar.activebar .topbar') );
+        firstHeaderOffset = $api.offset(homeHeader);
+
+        fix_android_ios('#D43C33');
 
         var main = $api.byId('main');
         var mainPos = $api.offset(main);
 
         var footer = $api.byId('footer');
-        var footerPos = $api.offset(footer);        
-        gFrameIndex = 0;
+        var footerPos = $api.offset(footer);
         
-        funIniGroup();
+        var ele = $api.byId('homeHeaderText');
+		$api.text(ele,api.appName);
+
+        funIniHome();
         initParams();
         exitApp();
     }
 
-    function funIniGroup(){
+    // 展示指定的frame
+    function showFrame(type) {
+        api.setFrameAttr({
+            name: type,
+            hidden: false
+        });
+    }
+
+    // ===================================
+    // 响应底部按钮的切换frame
+    // ===================================
+    function switchFrame(tag, type) {
+        switch (type) {
+            case 'home_frame':
+                randomSwitchBtn(tag, 0);
+                hideAllFrame();
+                if (isFirstOpen) {
+                    showFrame('home_frame');
+                } else {
+                    openFrameInstance('home_frame', firstHeaderOffset.h, false);
+                    isFirstOpen = true;
+                }
+                break;
+            case 'choice_frame':
+                randomSwitchBtn(tag, 1);
+                hideAllFrame();
+                if (isSecondOpen) {
+                    showFrame('choice_frame');
+                } else {
+                    openFrameInstance('choice_frame', firstHeaderOffset.h, false);
+                    isSecondOpen = true;
+                }
+                break;
+            case 'discover_frame':
+                randomSwitchBtn(tag, 2);
+                hideAllFrame();
+                if (isThirdOpen) {
+                    showFrame('discover_frame');
+                } else {
+                    openFrameInstance('discover_frame', firstHeaderOffset.h, false);
+                    isThirdOpen = true;
+                }
+                break;
+            case 'my_frame':
+                randomSwitchBtn(tag, 3);
+                hideAllFrame();
+                if (isForthOpen) {
+                    showFrame('my_frame');
+                } else {
+                    openFrameInstance('my_frame', firstHeaderOffset.h, false);
+                    isForthOpen = true;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    function funIniHome(){
+        isFirstOpen = true;
         // 第一次进入打开 首页
         api.openFrame ({
             name: 'home_frame',
             url: './html/home_frame/home_frame_body.html',
             rect:{
-            x:0,
-            w:'auto',
-            h:api.frameHeight-footerPos.h
+                x:0,
+                y: firstHeaderOffset.h,
+                w:'auto',
+                h:api.frameHeight-firstHeaderOffset.h-footerPos.h
             },
             bounces: false,
             opaque: false
@@ -100,7 +223,7 @@
     }
 
     // 随意切换按钮
-    function randomSwitchBtn( tag, type ) {
+    function randomSwitchBtn( tag, index ) {
         if( tag == $api.dom('#footer li.active') ) return;
         var eFootLis = $api.domAll('#footer li'),
             index = 0;
@@ -112,37 +235,31 @@
             }
         }
       	$api.addCls( eFootLis[index], 'active');
-        api.setFrameGroupIndex({
-            name: 'group',
-            index: index
-        });
-        if ( index === gFrameIndex ) {
-      		return 0;
-        } else {
-      		gFrameIndex = index;
+
+        // 切换头部
+        var lis = $api.domAll('.titlebar');
+        var i = 0,
+            len = lis.length;
+        var curLi = lis[index];
+
+        for (i; i < len; i++) {
+            var thisLi = lis[i];
+            if (thisLi === curLi) {
+                $api.addCls(thisLi, 'activebar');
+                $api.addCls(thisLi, 'activebar' + index);
+                continue;
+            } else {
+                if ($api.hasCls(thisLi, 'activebar')) {
+                    $api.removeCls(thisLi, 'activebar');
+                    $api.removeCls(thisLi, 'activebar' + i);
+                }
+            }
         }
-       	
-     	hideAllFrame();
-     	
-        switch(type) {
-            case 'home_frame':
-                openFrameInstance('home_frame', 0);
-            	break;
-            case 'choice_frame':
-                openFrameInstance('choice_frame', 0);
-            	break;
-            case 'discover_frame':
-                openFrameInstance('discover_frame', 0);
-            	break;
-            case 'my_frame':
-                openFrameInstance('my_frame', 0);
-            	break;
-            default:
-            	break;
-        }
+
+        $api.fixStatusBar( $api.dom( '.titlebar.activebar .topbar') );
     }
     
-    function openFrameInstance( frame, marginTop ) {
+    function openFrameInstance( frame, marginTop, isBounce) {
         api.openFrame ({
             name: frame,
             url: './html/' + frame +'/' + frame + '_body.html',
@@ -152,8 +269,7 @@
                 w:'auto',
                 h:api.frameHeight - marginTop - footerPos.h
             },
-            pageParam: {name: 'test'},
-            bounces: false,
+            bounces: isBounce,
             vScrollBarEnabled:false,
             hScrollBarEnabled:false,
             delay:200
@@ -203,5 +319,37 @@
    				exitApp();
     		},3000)
     	});
+    }
+    /**
+    * [fix_android_ios 解决沉浸式的问题]
+    * @author Hongwei
+    * @param {[obj]} color [头部颜色 | darkgray 深灰色 | black 黑色 | green 绿色，如果不是以上这几种颜色，可以自定义颜色 ]
+    * @link http://www.kancloud.cn/hongweizhiyuan/apicloud_function/270056
+    * @eg fix_android_ios('darkgray')  or fix_android_ios('FF0000')
+    */
+    function fix_android_ios(color){
+        switch(color){
+            case 'darkgray':
+                color = "#303247"
+                break;
+            case 'black':
+                color = "#000000"
+                break;
+            case 'white':
+                color = "#FFFFFF"
+                break;
+            case 'green':
+                color = "#01b980"
+                break;
+            default:
+                color = color
+        }
+        api.setStatusBarStyle({
+            style : 'light',
+            color: color
+        });
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        $api.fixStatusBar(header);
     }
 </script>
