@@ -1,0 +1,38 @@
+html, body {
+	min-height: 100%;
+	background-color: #f9f9f9;
+}
+.fr {
+	float: right;
+}
+.fl {
+	float: left;
+}
+.topbar {
+	background: #d81e06;
+	height: 50px;
+	border-bottom: 1px solid #DDDFE3;
+	position: relative;
+}
+.egret-img {
+	position: absolute;
+}
+.egret-img img {
+	height: 30px;
+	padding: 10px;
+	vertical-align: top;
+}
+.egret-header-text {
+	line-height: 50px;
+	color: #fff;
+	font-size: 16px;
+	padding: 0 10px;
+}
+.egret-header-title {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	line-height: 50px;
+	color: #fff;
+	font-size: 20px;
+}

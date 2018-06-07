@@ -9,126 +9,206 @@
     <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../../mui/css/mui.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/app.css">
-    <style>
-		.empty{ text-align: center; padding: 120px 0;}
-    </style>
 </head>
 <body>
-	<div id="slider" class="mui-slider">
-		<div class="mui-slider-group mui-slider-loop">
-			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-			<div class="mui-slider-item mui-slider-item-duplicate">
-				<a href="#">
-					<img src="../../image/banner/yuantiao.jpg">
-				</a>
+	<div class="mui-content">
+		<div id="slider" class="mui-slider"></div>
+		<div id="gallery" class="mui-slider mui-slider-custom">
+			<div class="mui-slider-group">
+				<div class="mui-slider-item">
+					<ul class="mui-table-view mui-grid-view mui-grid-9">
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-zhoubian"></use>
+								</svg>
+								<div class="mui-media-body">周边</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-liren"></use>
+								</svg>
+								<div class="mui-media-body">丽人</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#"> 
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-qinzihudong"></use>
+								</svg>
+								<div class="mui-media-body">亲子</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-jiazhuang"></use>
+								</svg>
+								<div class="mui-media-body">家装</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-kuaican"></use>
+								</svg>
+								<div class="mui-media-body">快餐</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-meishi"></use>
+								</svg>
+								<div class="mui-media-body">美食</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-jiudian"></use>
+								</svg>
+								<div class="mui-media-body">酒店</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-xuexi-peixun"></use>
+								</svg>
+								<div class="mui-media-body">学习培训</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-ktv"></use>
+								</svg>
+								<div class="mui-media-body">KTV</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-slider-item">
+					<ul class="mui-table-view mui-grid-view mui-grid-9">
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-shenghuofuwu"></use>
+								</svg>
+								<div class="mui-media-body">生活服务</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">						
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-dianying"></use>
+								</svg>
+								<div class="mui-media-body">电影</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-chongwu"></use>
+								</svg>
+								<div class="mui-media-body">宠物</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-paihang"></use>
+								</svg>
+								<div class="mui-media-body">排行榜</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-xiuxian"></use>
+								</svg>
+								<div class="mui-media-body">休闲娱乐</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-gouwu"></use>
+								</svg>
+								<div class="mui-media-body">购物</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-yundong"></use>
+								</svg>
+								<div class="mui-media-body">运动</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-waimai"></use>
+								</svg>
+								<div class="mui-media-body">外卖</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<a href="#">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-quanbu"></use>
+								</svg>
+								<div class="mui-media-body">全部分类</div>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<!-- 第一张 -->
-			<div class="mui-slider-item">
-				<a href="#">
-					<img src="../../image/banner/shuijiao.jpg">
-				</a>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
 			</div>
-			<!-- 第二张 -->
-			<div class="mui-slider-item">
-				<a href="#">
-					<img src="../../image/banner/muwu.jpg">
-				</a>
-			</div>
-			<!-- 第三张 -->
-			<div class="mui-slider-item">
-				<a href="#">
-					<img src="../../image/banner/cbd.jpg">
-				</a>
-			</div>
-			<!-- 第四张 -->
-			<div class="mui-slider-item">
-				<a href="#">
-					<img src="../../image/banner/yuantiao.jpg">
-				</a>
-			</div>
-			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-			<div class="mui-slider-item mui-slider-item-duplicate">
-				<a href="#">
-					<img src="../../image/banner/shuijiao.jpg">
-				</a>
-			</div>
-		</div>
-		<div class="mui-slider-indicator">
-			<div class="mui-indicator mui-active"></div>
-			<div class="mui-indicator"></div>
-			<div class="mui-indicator"></div>
-			<div class="mui-indicator"></div>
 		</div>
 	</div>
-    <div><button class="mui-btn mui-btn-primary" onclick="postInfo()">测试发送报文</button></div>
+	<div style="text-align:center;"><button class="mui-btn mui-btn-primary" onclick="postInfo()">测试发送报文</button></div>
 </body>
+<script id="bannerTmpl" type="text/x-dot-template">
+	<div class="mui-slider-group mui-slider-loop">
+		{{~ it.banners:data:index}}
+			{{? index === 0 || index === (it.banners.length - 1)}}
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#"> <img src="{{= data.bannerImageUrl }}"></a>
+				</div>
+			{{??}}
+				<div class="mui-slider-item">
+					<a href="#"> <img src="{{= data.bannerImageUrl }}"></a>
+				</div>
+			{{?}}
+		{{~}}
+	</div>
+	<div class="mui-slider-indicator">
+		{{ for(var i = 0, len = it.banners.length - 2; i < len; i++) { }}
+			{{? i === 0}}
+				<div class="mui-indicator mui-active"></div>
+			{{??}}
+				<div class="mui-indicator"></div>
+			{{?}}
+		{{ } }}
+	</div>
+</script>
 <script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
 <script type="text/javascript" src="../../script/core-min.js"></script>
 <script type="text/javascript" src="../../script/md5.js"></script>
 <script type="text/javascript" src="../../script/tripledes.js"></script>
 <script type="text/javascript" src="../../script/mode-ecb.js"></script>
 <script type="text/javascript" src="../../script/fui.js"></script>
 <script type="text/javascript" src="../../mui/js/mui.min.js"></script>
-<script type="text/javascript">
-	var keyLength = $api.getStorage('keyLength');
-	var secretKey = $api.getStorage('secretKey');
-	var serviceUrl = $api.getStorage('serviceUrl');
-	var fileUploadServiceUrl = $api.getStorage('fileUploadServiceUrl');
-	var machineCode = $api.getStorage('machineCode');
-	var device = $api.getStorage('device');
-	function postInfo(){
-		var transCode = "1001";
-		var data = {
-            "header":{"transcode":transCode},
-            "body":{
-                "device":device,
-                "appKey":transCode,
-                "machineCode":machineCode,
-                "uid":"9",
-                "token":"jBm5Ev9g",
-                "userName": "苏先生",
-                "card": "450521199808084949",
-                "income": "100",
-                "userEmail": "123456@qq.com",
-                "area": "湖南省,长沙市",
-                "contact": "18977999999",
-                "relation": "2",
-                "userMarriage": "2",
-                "userChsi": "2"
-            }
-        };
-        var md5key = encryptByMd5(JSON.stringify(data)+transCode).toUpperCase();
-		api.ajax({
-		    url: serviceUrl,
-		    method: 'post',
-		    data: {
-		        values: {
-		            "data": md5key+encryptByDES(JSON.stringify(data),secretKey)
-		        }
-		    },
-			dataType: "json"
-		}, function(ret, err) {
-		    if (ret) {
-        		var dataJsonEncrypt = ret.data.substring(keyLength);
-        		var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
-		        api.alert({ msg: decryptData });
-		    } else {
-		    	var dataJsonEncrypt = err.data.substring(keyLength);
-		    	var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
-		        api.alert({ msg: decryptData });
-		    }
-		});
-	}
-
-    apiready = function () {
-		//mui
-		mui.init({
-			swipeBack:true //启用右滑关闭功能
-		});
-		var slider = mui("#slider");
-		slider.slider({
-			interval: 5000 //每隔5秒调用一次
-		});
-	}
-</script>
+<script type="text/javascript" src="../../script/iconfont/iconfont.js"></script>
+<script type="text/javascript" src="../../script/home/home.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
 </html>

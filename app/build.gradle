@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            storeFile file('D:/installed/Android/keys/android.key.jks')
+            storeFile file('../keys/android.key.jks')
         }
     }
     compileSdkVersion 26
@@ -11,8 +11,8 @@ android {
         applicationId "com.app.jcoffee"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 8
-        versionName "1.0.8"
+        versionCode 9
+        versionName "1.0.9"
     }
     buildTypes {
         release {
@@ -23,6 +23,11 @@ android {
     }
     lintOptions {
         abortOnError false
+    }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "app-ws-${variant.versionName}.apk"
+        }
     }
 }
 

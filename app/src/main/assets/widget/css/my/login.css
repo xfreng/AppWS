@@ -1,0 +1,151 @@
+input {
+	height: 50px;
+	font-size: 16px;
+	color: #8E8C8C;
+	width: 80%;
+}
+input::-webkit-input-placeholder {
+	color: #ccc;
+}
+.divider {
+	height: 15px;
+}
+.email, .passwd {
+	background: #fff;
+}
+.passwd img, .email img {
+	vertical-align: top;
+}
+.item {
+	background-color: #fff;
+	border-bottom: 1px solid #e0e0e0;
+	position: relative;
+}
+.btn {
+	margin: 3px 10px;
+}
+.btn {
+	background: #d81e06;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 20px;
+	margin-top: 20px;
+	border-radius: 5px;
+}
+.btn button {
+	color: #fff;
+}
+.email img {
+	width: 25px;
+	margin-top: 12px;
+	margin-left: 10px;
+	margin-right: 9px;
+}
+.passwd img {
+	height: 25px;
+	margin-top: 12px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.secretword img {
+	height: 25px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/* 底部样式 */
+.bottom {
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+.bottom img {
+	height: 50px;
+}
+.bottom .arrow {
+	text-align: center;
+	margin: 10px 0;
+}
+.bottom .arrow img {
+	width: 40px;
+	height: 20px;
+}
+#qqpic {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.thirdinfo {
+	color: #666;
+	margin-top: 10px;
+}
+
+.secretword input {
+	width: 50%;
+}
+.secretimg {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 56px;
+	margin-right: 10px;
+	border-left: 1px solid #e0e0e0;
+}
+.secretimg img {
+	height: 87%;
+}
+
+.thirdcompy .left {
+	margin-right: 20px;
+}
+.thirdcompy .left, .thirdcompy .right {
+	width: 40%;
+	display: inline-block;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	vertical-align: top;
+	text-align: left;
+	font-size: 18px;
+}
+.thirdcompy .left img, .thirdcompy .right img {
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin: 5px 10px;
+}
+.thirdcompy span {
+	line-height: 40px;
+	color: #666;
+}
+
+.loginmore {
+	margin-top: 10px;
+}
+.loginmore span {
+	color: #0078ff;
+}
+.loginmore .forget {
+	margin-left: 10px;
+}
+.loginmore .phone {
+	margin-right: 10px;
+	float: right;
+}
+
+.btnhover {
+	background-color: #dcdcdc !important;
+}
+.buyhover {
+	background-color: rgba(252, 85, 0, 0.6) !important;
+}
+.presshover {
+	background-color: #FAFAFA !important;
+}
+.txthover {
+	color: rgba(0, 120, 255, 0.6) !important;
+}
+input {
+	outline: none;
+}

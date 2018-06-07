@@ -7,244 +7,53 @@
     <title>我的</title>
 	<link rel="stylesheet" type="text/css" href="../../css/api.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
-
-    <style>
-    	.h10 {height: 10px;background: #f0f0f0;}
-		.h1 {height: 1px;margin-left: 15px;background: #f0f0f0;}
-		.fr {float: right;}
-		.hint {color: #666;font-size: 12px;margin-right: 5px;}
-
-		.firstblock, .secondblock, .thirdblock {background-color: #fff;}
-		/* 头部登陆 */
-		.login {background-image: url(../../image/personal_bkg.jpg);background-repeat: no-repeat; background-size: contain;position: relative;}
-		.loginbg {/*position: absolute;*/ width: 100%;}
-		.login .personal_logo {position: absolute; top: 60px; width: 70px; left: 20px;}
-		.person_arrow {position: absolute;height: 20px; right: 10px; top: 90px;}
-		.login .userinfo {position: absolute; top: 60px; margin-left: 100px;}
-		.login .userinfo .title {font-size: 20px; color: #fff;}
-		.login .userinfo .subtitle {font-size: 14px; color: #fff;border: 1px solid #fff;display: inline-block;padding: 3px;border-radius: 4px;margin-top: 0px;}
-
-		/* 设置条目 */
-		.item {height: 50px;line-height: 50px;padding-left: 15px;background-color: #fff;}
-		.item_ico {float: left;width: 30px;padding: 10px 10px 10px 0;}
-		.item_arrow {float: right;width: 16px;padding: 17px 15px 15px 0;}
-
-		.presshover {background-color: #FAFAFA;}
-    </style>
+	<link rel="stylesheet" type="text/css" href="../../css/my/my.css"/>
 </head>
 <body>
 	<div class="login"  tapmode="" onclick="openLogin()">
-		<img src="../../image/personal_bkg.jpg" alt="" class="loginbg">
-		<img id="avatar" name="avatar" src="../../image/profile_default.png" alt="" class="personal_logo" onclick="showAction();">
+		<img src="../../image/my/personal_bkg.jpg" alt="" class="loginbg">
+		<img id="avatar" name="avatar" src="../../image/my/profile_default.png" alt="" class="personal_logo" onclick="showAction();">
 		<div class="userinfo">
 			<div class="title">&nbsp;</div>
 			<div class="subtitle">点击登录&nbsp;/&nbsp;注册</div>
 		</div>
-		<img src="../../image/personal_icon_arrow.png" alt="" class="person_arrow">
+		<img src="../../image/my/personal_icon_arrow.png" alt="" class="person_arrow">
 	</div>
-
-
 	<!-- 第一块 -->
+	<div class="h10"></div>
 	<div class="firstblock">
-		<div class="item" tapmode="presshover" onclick="openNewWindow('myorder')">
-			<img src="../../image/my_order_user_icon_normal.png" alt="" class="item_ico">
-			<span>我的订单</span>
-			<img src="../../image/arrow.png" alt="" class="item_arrow">
-		</div><div class="h1"></div>
-		<div class="item" tapmode="presshover" onclick="openLogin()">
-			<img src="../../image/my_coupon_user_icon_normal.png" alt="" class="item_ico">
-			<span>我的团购券</span>
-			<img src="../../image/arrow.png" alt="" class="item_arrow">
-		</div><div class="h1"></div>
-		<div class="item" tapmode="presshover" onclick="openLogin()">
-			<img src="../../image/my_wallet_user_icon_normal.png" alt="" class="item_ico">
-			<span>我的钱包</span>
-			<img src="../../image/arrow.png" alt="" class="item_arrow">
-			<span class="fr hint">余额/返现/抵用券/会员卡</span>
-		</div>
-	</div>
-	
-
+        <div class="item open-win" win="myorder" login="true">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>我的订单</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+    </div>
 	<!-- 第二块 -->
 	<div class="h10"></div>
 	<div class="secondblock">
 		<div class="item" tapmode="presshover" onclick="openLogin()">
-			<img src="../../image/my_favorite_user_icon_normal.png" alt="" class="item_ico">
+			<img src="../../image/my/my_favorite_user_icon_normal.png" alt="" class="item_ico">
 			<span>我的收藏</span>
-			<img src="../../image/arrow.png" alt="" class="item_arrow">
-		</div><div class="h1"></div>
-		<div class="item" tapmode="presshover" onclick="openLogin()">
-			<img src="../../image/my_history_user_icon_normal.png" alt="" class="item_ico">
-			<span>最近浏览</span>
-			<img src="../../image/arrow.png" alt="" class="item_arrow">
-		</div><div class="h1"></div>
-		<div class="item" tapmode="presshover" onclick="openLogin()">
-			<img src="../../image/my_review_user_icon_normal.png" alt="" class="item_ico">
-			<span>待点评</span>
 			<img src="../../image/arrow.png" alt="" class="item_arrow">
 		</div>
 	</div>
-
 	<!-- 第三块 -->
 	<div class="h10"></div>
 	<div class="thirdblock">
-		<div class="item" tapmode="presshover" onclick="openLogin()">
-			<img src="../../image/my_order_user_icon_normal.png" alt="" class="item_ico">
-			<span>服务中心</span>
-			<img src="../../image/arrow.png" alt="" class="item_arrow">
-		</div><div class="h1"></div>
 		<div class="item" tapmode="presshover" onclick="openNewWindow('setting')">
-			<img src="../../image/my_setting_user_icon_normal.png" alt="" class="item_ico">
+			<img src="../../image/my/my_setting_user_icon_normal.png" alt="" class="item_ico">
 			<span>设置</span>
 			<img src="../../image/arrow.png" alt="" class="item_arrow">
 		</div>
 	</div>
-	
-
 	<div class="h10"></div><div class="h10"></div>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
 <script type="text/javascript" src="../../script/core-min.js"></script>
 <script type="text/javascript" src="../../script/md5.js"></script>
 <script type="text/javascript" src="../../script/tripledes.js"></script>
 <script type="text/javascript" src="../../script/mode-ecb.js"></script>
 <script type="text/javascript" src="../../script/fui.js"></script>
-<script type="text/javascript">
-	function openNewWindow(type){
-		api.openWin({
-			name: 'forthsub',
-			url: './forth_header.html',
-			pageParam: {name: type},
-			bounces: false,
-			delay:200
-		});
-	}
-
-	function openLogin(){
-		api.openWin({
-			name: 'login',
-			url: './login_header.html',
-			bounces: false,
-			delay:200
-		});
-	}
-
-	function showAction(){
-    	api.actionSheet({
-	        title: '上传头像',
-	        cancelTitle: '取消',
-	        buttons: ['拍照','从手机相册选择']
-	    }, function(ret, err) {
-	        if (ret) {
-	            getPicture(ret.buttonIndex);
-	        }
-	    });
-    }
-
-	function getPicture(sourceType) {
-	    if(sourceType == 1){ // 拍照
-	        //获取一张图片
-	        api.getPicture({
-	            sourceType: 'camera',
-	            encodingType: 'png',
-	            mediaValue: 'pic',
-	            allowEdit: false,
-	            quality: 90,
-	            saveToPhotoAlbum: true
-	        }, function(ret, err) {
-	            // 获取拍照数据并处理
-	            if (ret) {
-	                var imgSrc = ret.data;
-	                if (imgSrc != "") {
-	                	uploadFile(imgSrc);
-	                    var ele=$api.dom('#avatar');
-	                    $api.attr(ele,'src',imgSrc);
-	                }
-	            }
-	        });
-	    } else if(sourceType==2){ // 从相机中选择
-	        //UIMediaScanner 是一个多媒体扫描器，可扫描系统的图片、视频等多媒体资源
-	        var obj = api.require('UIMediaScanner');
-	        obj.open({
-	            //返回的资源种类,picture（图片）,video（视频）,all（图片和视频）
-	            type: 'picture',
-	            //（可选项）图片显示的列数，须大于1
-	            column: 4,
-	            max: 1,
-	            //（可选项）图片排序方式,asc（旧->新）,desc（新->旧）
-	            sort: {
-	                key: 'time',
-	                order: 'desc'
-	            },
-	            //（可选项）模块各部分的文字内容
-	            texts: {
-	                stateText: '已选择*项',
-	                cancelText: '取消',
-	                finishText: '完成'
-	            },
-	            styles: {
-	                bg: '#fff',
-	                mark: {
-	                    icon: '',
-	                    position: 'bottom_right',
-	                    size: 20
-	                },
-	                nav: {
-	                    bg: '#eee',
-	                    stateColor: '#000',
-	                    stateSize: 18,
-	                    cancleBg: 'rgba(0,0,0,0)',
-	                    cancelColor: '#000',
-	                    cancelSize: 18,
-	                    finishBg: 'rgba(0,0,0,0)',
-	                    finishColor: '#000',
-	                    finishSize: 18
-	                }
-	            }
-	        }, function(ret) {
-	            // 获取图片数据并处理
-	            if (ret) {
-	                if (getJsonObjLength(ret.list) != 0) {
-	                	uploadFile(ret.list[0].path);
-	                }
-	            }
-	        });
-	    }
-	}
-
-	function getJsonObjLength(jsonObj) {
-        var length = 0;
-        for (var item in jsonObj) {
-            length++;
-        }
-        return length;
-    }
-
-	function uploadFile(filePath){
-		var data = {transCode: "8083"};
-		api.ajax({
-			timeout : 100,
-		    url: fileUploadServiceUrl,
-		    method: 'post',
-		    data: {
-		    	values:data,
-		        files:{"file": filePath}
-		    },
-			dataType: "json"
-		}, function(ret, err) {
-		    if (ret) {
-        		var dataJsonEncrypt = ret.data.substring(keyLength);
-        		var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
-				var ele = $api.dom('#avatar');
-	            $api.attr(ele,'src', decryptData.body.imageURL);
-		        api.alert({ msg: decryptData });
-		    } else {
-		    	var dataJsonEncrypt = err.data.substring(keyLength);
-		    	var decryptData = decryptByDES(dataJsonEncrypt,secretKey);
-		        api.alert({ msg: decryptData });
-		    }
-		});
-	}
-</script>
+<script type="text/javascript" src="../../script/my/my.js"></script>
 </html>
