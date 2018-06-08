@@ -4,10 +4,32 @@
 	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
 	<title>设置</title>
 	<link rel="stylesheet" type="text/css" href="../../css/api.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
 
     <style>
     	html, body {width: 100%;min-height: 100%;background: #f0f0f0;}
+    	header {
+            background-color: #d81e06;
+            border-bottom: solid #e0e0e0 1px;
+        }
+        
+        h1 {
+            height: 50px;
+            line-height: 50px;
+            color: rgb(38, 38, 38);
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .back {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 50px;
+            height: 50px;
+            background: url(../../image/ic_back_u.png) center center no-repeat;
+            background-size: 15px auto;
+        }
     	.h10 {height: 10px;background: #f0f0f0;}
 		.h1 {height: 1px;margin-left: 15px;background: #f0f0f0;}
 		.fr {float: right;}
@@ -28,6 +50,10 @@
     </style>
 </head>
 <body>
+	<header id="header">
+        <div class="back event-back" tapmode="highlight"></div>
+        <h1>系统设置</h1>
+    </header>
 	<!-- 第一块 -->
 	<div class="firstblock">
 		<div class="item" tapmode="highlight" onclick="openLogin()">
@@ -65,10 +91,13 @@
 	<div class="h10"></div><div class="h10"></div>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
 <script type="text/javascript">
+	apiready = function() {
+ 		fnReady();
+ 	}
 
-	function openLogin()
-	{
+	function openLogin() {
 		api.openWin({
 			name: 'login',
 			url: './login_header.html',
