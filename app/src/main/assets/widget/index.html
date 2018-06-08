@@ -14,9 +14,18 @@
     <!-- 第一头部 -->
     <div id="homeHeader" class="titlebar activebar">
         <div class="egret-header topbar normalHeader">
-            <div class="egret-header-box egret-img fr"><img src="./image/notice.png" alt="" onclick="openNotice()"></div>
+            <div id="citylist" class="egret-header-box egret-img fl" win="citylist" url="./html/my_frame/citylist.html">
+                <span class="currentCity">长沙</span>
+                <img src="./image/header/arrow_down_home.png">
+            </div>
+            <div id="notice" class="egret-header-box egret-img fr" win="notice" url="./html/my_frame/message.html">
+                <img src="./image/notice.png" alt="" tapmode="highlight" onclick="fnOpenNewWin('notice')">
+            </div>
             <div class="egret-header-box">
-                <div id="homeHeaderText" class="egret-header-title"></div>
+                <div class="egret-header-search">
+                    <img src="./image/header_search.png" alt="">
+                    <input type="text" placeholder="输入商户名、地点">
+                </div>
             </div>
         </div>
     </div>
@@ -41,7 +50,7 @@
     <div id="main">
     </div>
     <div id="footer" class="border-t">
-        <ul class="flex-wrap" >
+        <ul class="flex-wrap">
             <li tapmode="hover" onclick="switchFrame(this, 'home_frame');" class="flex-con active" >首页</li>
             <li tapmode="hover" onclick="switchFrame(this, 'choice_frame');" class="flex-con" >精选</li>
             <li tapmode="hover" onclick="switchFrame(this, 'discover_frame');" class="flex-con" >发现</li>

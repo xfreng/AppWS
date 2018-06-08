@@ -47,9 +47,6 @@ apiready = function () {
 	var footer = $api.byId('footer');
 	var footerPos = $api.offset(footer);
 
-	var ele = $api.byId('homeHeaderText');
-	$api.text(ele, api.appName);
-
 	fnInitHome();
 	fnInitParams();
 	fnInitListener();
@@ -226,6 +223,6 @@ function fnInitListener() {
 	});
 }
 
-function openNotice() {
-
+function openfindmusic(){
+	api.alert({msg:"in...*******123123123"});
 }

@@ -11,7 +11,7 @@ html, body {
 .topbar {
 	background: #d81e06;
 	height: 50px;
-	border-bottom: 1px solid #DDDFE3;
+	border-bottom: 1px solid #d81e06d6;
 	position: relative;
 }
 .egret-img {

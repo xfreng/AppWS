@@ -10,9 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="../../css/my/my.css"/>
 </head>
 <body>
-	<div class="login"  tapmode="" onclick="openLogin()">
+	<div class="login" tapmode="highlight" onclick="openLogin()">
 		<img src="../../image/my/personal_bkg.jpg" alt="" class="loginbg">
-		<img id="avatar" name="avatar" src="../../image/my/profile_default.png" alt="" class="personal_logo" onclick="showAction();">
+		<img id="avatar" name="avatar" src="../../image/my/profile_default.png" alt="" 
+             class="personal_logo" tapmode="highlight" onclick="showAction();">
 		<div class="userinfo">
 			<div class="title">&nbsp;</div>
 			<div class="subtitle">点击登录&nbsp;/&nbsp;注册</div>
@@ -31,7 +32,7 @@
 	<!-- 第二块 -->
 	<div class="h10"></div>
 	<div class="secondblock">
-		<div class="item" tapmode="presshover" onclick="openLogin()">
+		<div class="item" tapmode="highlight" onclick="openLogin()">
 			<img src="../../image/my/my_favorite_user_icon_normal.png" alt="" class="item_ico">
 			<span>我的收藏</span>
 			<img src="../../image/arrow.png" alt="" class="item_arrow">
@@ -40,7 +41,7 @@
 	<!-- 第三块 -->
 	<div class="h10"></div>
 	<div class="thirdblock">
-		<div class="item" tapmode="presshover" onclick="openNewWindow('setting')">
+		<div class="item" tapmode="highlight" onclick="openNewWindow('setting')">
 			<img src="../../image/my/my_setting_user_icon_normal.png" alt="" class="item_ico">
 			<span>设置</span>
 			<img src="../../image/arrow.png" alt="" class="item_arrow">

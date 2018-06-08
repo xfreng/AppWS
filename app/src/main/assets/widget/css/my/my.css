@@ -78,6 +78,6 @@
 	padding: 17px 15px 15px 0;
 }
 
-.presshover {
-	background-color: #FAFAFA;
+.highlight {
+	opacity: 0.7;
 }

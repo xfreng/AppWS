@@ -1,7 +1,7 @@
 function openNewWindow(type) {
 	api.openWin({
-		name : 'forthsub',
-		url : './forth_header.html',
+		name : type,
+		url : './' + type + '.html',
 		pageParam : {
 			name : type
 		},

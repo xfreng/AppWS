@@ -140,8 +140,8 @@ input::-webkit-input-placeholder {
 .buyhover {
 	background-color: rgba(252, 85, 0, 0.6) !important;
 }
-.presshover {
-	background-color: #FAFAFA !important;
+.highlight {
+	opacity: 0.7;
 }
 .txthover {
 	color: rgba(0, 120, 255, 0.6) !important;
